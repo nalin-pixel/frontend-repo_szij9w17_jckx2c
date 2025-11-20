@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export default function Products() {
   const products = [
     {
@@ -23,24 +25,46 @@ export default function Products() {
   ];
 
   return (
-    <section id="products" className="py-20 bg-gradient-to-b from-white to-emerald-50/30">
+    <section id="products" className="py-24 bg-gradient-to-b from-white to-emerald-50/30">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
-        <div className="max-w-2xl">
+        <motion.div
+          className="max-w-2xl"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">Hero ingredients, responsibly sourced</h2>
           <p className="mt-3 text-gray-600">Core lines with seasonal specials. Full spec sheets available on request.</p>
-        </div>
+        </motion.div>
 
         <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.map((p, i) => (
-            <div key={i} className="group overflow-hidden rounded-xl ring-1 ring-black/5 bg-white hover:shadow-md transition-all">
-              <div className="aspect-[4/3] overflow-hidden">
-                <img src={p.img} alt={p.name} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+            <motion.div
+              key={i}
+              className="group overflow-hidden rounded-xl ring-1 ring-black/5 bg-white/80 backdrop-blur hover:shadow-lg transition-all"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+              whileHover={{ y: -4 }}
+            >
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <motion.img
+                  src={p.img}
+                  alt={p.name}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                  whileHover={{ scale: 1.06 }}
+                  transition={{ duration: 0.6 }}
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent" />
               </div>
               <div className="p-4">
                 <h3 className="font-semibold text-gray-900">{p.name}</h3>
                 <p className="text-sm text-gray-600">{p.note}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

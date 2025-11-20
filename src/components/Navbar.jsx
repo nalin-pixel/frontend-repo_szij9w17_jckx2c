@@ -1,14 +1,20 @@
 import { Menu, Leaf, BadgeCheck } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Navbar() {
   return (
-    <header className="fixed top-0 inset-x-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/80 border-b border-black/5">
+    <motion.header
+      initial={{ y: -40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed top-0 inset-x-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/80 border-b border-black/5"
+    >
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
         <div className="h-16 flex items-center justify-between">
           <a href="#" className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-emerald-600 text-white grid place-items-center shadow-sm">
+            <motion.div className="h-8 w-8 rounded-lg bg-emerald-600 text-white grid place-items-center shadow-sm" whileHover={{ rotate: 6 }}>
               <Leaf className="h-5 w-5" />
-            </div>
+            </motion.div>
             <span className="font-semibold tracking-tight text-gray-900">Habesha Harvest</span>
           </a>
 
@@ -28,6 +34,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }

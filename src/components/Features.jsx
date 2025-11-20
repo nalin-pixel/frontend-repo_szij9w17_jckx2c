@@ -1,4 +1,5 @@
 import { Leaf, Recycle, ShieldCheck, Ship, BadgeCheck, Globe2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Features() {
   const items = [
@@ -35,20 +36,34 @@ export default function Features() {
   ];
 
   return (
-    <section id="sourcing" className="py-20">
+    <section id="sourcing" className="py-24">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
-        <div className="max-w-2xl">
+        <motion.div
+          className="max-w-2xl"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900">
             Built for responsible brands
           </h2>
           <p className="mt-3 text-gray-600">
             A supply chain you can stand behind — designed for quality, safety and planet-positive impact.
           </p>
-        </div>
+        </motion.div>
 
         <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {items.map((f, i) => (
-            <div key={i} className="rounded-xl ring-1 ring-black/5 bg-white p-6 hover:shadow-md transition-shadow">
+            <motion.div
+              key={i}
+              className="rounded-xl ring-1 ring-black/5 bg-white/80 backdrop-blur p-6 hover:shadow-lg transition-shadow"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+              whileHover={{ y: -3 }}
+            >
               <div className="flex items-start gap-3">
                 <div className="h-10 w-10 rounded-lg bg-emerald-50 grid place-items-center">
                   {f.icon}
@@ -58,7 +73,7 @@ export default function Features() {
                   <p className="mt-1 text-sm text-gray-600">{f.desc}</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
